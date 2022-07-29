@@ -9,7 +9,7 @@
   >
     <img alt="Vue logo" src="./assets/logo.png" />
 
-    <form ref="formulir" @submit.prevent="onSubmit">
+    <form ref="formulir" @submit.prevent="onSubmit" style="margin-bottom: 16px">
       <div>Masukkan nama (hanya text)</div>
       <input
         type="text"
@@ -23,13 +23,20 @@
       <button type="submit">{{ isEdit ? "Ubah" : "Simpan" }}</button>
     </form>
 
-    <div>
-      <input v-model="search" type="text" placeholder="search" />
-      <select v-model="sort" name="" id="">
-        <option value="" disabled>Urutkan</option>
-        <option value="ASCENDING">Ascending</option>
-        <option value="DESCENDING">Descending</option>
-      </select>
+    <div style="display: flex; gap: 16px; margin-bottom: 16px">
+      <div style="display: flex">
+        <div>Search:</div>
+        <input v-model="search" type="text" placeholder="search" />
+      </div>
+
+      <div style="display: flex">
+        <div>Sort:</div>
+        <select v-model="sort" name="" id="">
+          <option value="" disabled>Urutkan</option>
+          <option value="ASCENDING">Ascending</option>
+          <option value="DESCENDING">Descending</option>
+        </select>
+      </div>
     </div>
 
     <table>
@@ -55,7 +62,7 @@
 
     <div v-if="isSearchFailed">pencarian tidak ditemukan</div>
 
-    <div v-if="totalPages() > 0" class="pagination-wrapper">
+    <div v-if="totalPages() > 0 && !isSearchFailed" style="margin-top: 16px">
       <span
         v-if="showPreviousLink()"
         class="pagination-btn"
